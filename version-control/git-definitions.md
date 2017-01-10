@@ -4,7 +4,9 @@
 
 * What is version control?  Why is it useful?
 
-Version control is a system of managing revision control, most commonly utilized by Git and hosted on GitHub. Version control is useful for cross-collaboration and protecting the code. Version control allows multiple users to access the same code, simultaneously develop on that code, and track the revisions each user contributes. If an error occurs, version control allows the project to be rolled back to any previous version in its history. 
+Version Control allows us to view the entire history of revisions to one or more files, and merge revisions made by different people.
+
+It allows for safety to rollback code if an error occurs, and allows for multiple developers to work simultaneously and cohesively.
 
 * What is a branch and why would you use one?
 
