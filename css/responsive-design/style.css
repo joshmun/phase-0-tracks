@@ -1,9 +1,9 @@
 body {
-  width: 960px;
+  max-width: 960px;
 }
 
 main {
-  width: 756px;
+  width: 80%;
   display: block;
   position: absolute;
   top: 0;
@@ -18,9 +18,11 @@ main {
   top: 0;
   bottom: 0
   left: 0;
-  width: 200px;
+  width: 20%;
   background: white;
   vertical-align: baseline;
+  margin: auto;
+
 }
 
 blockquote {
@@ -54,4 +56,69 @@ figure {
 figcaption {
   font-style: italic;
   text-align: right;
+}
+
+@media screen and (max-width: 500px) {
+  h1 {
+    font-size: small;
+  }
+}
+
+
+@media screen and (min-width: 1000px) {
+  h1 {
+    font-size: xx-large;
+    font-variant: small-caps;
+  }
+}
+
+/*@media screen and (min-width: 1000 px){
+  html {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }*/
+
+  /*#external-links {
+    width: 200px;
+    vertical-align: baseline;
+    display: block;
+    column-count: 1;
+  }
+  main {
+    width: 50%;
+    display: block;
+    vertical-align: baseline;
+    column-count: 2;
+  }
+  #diy {
+    width: 30%;
+    display: block;
+    vertical-align: baseline;
+    column-count: 3;
+  }
+}*/
+
+/*@media screen and (max-width: 500px) {
+  #external-links {
+    display: block;
+    position: relative;
+    margin-right: 0;
+    width: 100%;
+    margin: auto;
+  }
+  main {
+    display: block;
+    position: relative;
+    top: 20%;
+    margin-right: 0;
+    width: 100%;
+    margin: auto;
+  }
+}*/
+
+/*@media screen and (max-width: 500px) {
+  body {
+    background-color: hotpink;
+  }
 }
