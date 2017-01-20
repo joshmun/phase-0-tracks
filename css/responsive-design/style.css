@@ -2,6 +2,27 @@ body {
   width: 960px;
 }
 
+main {
+  width: 756px;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 200px;
+  vertical-align: baseline;
+}
+
+#external-links {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0
+  left: 0;
+  width: 200px;
+  background: white;
+  vertical-align: baseline;
+}
+
 blockquote {
   border-left: 5px solid blue;
   padding: 15px;
