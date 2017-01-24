@@ -1,0 +1,9 @@
+-Request User Input until 
+	-Request = 3 or 
+	-User Input = integer
+-If User Input = Integer
+	-User Input = gets.chomp
+	-Search list of Elevator floors until User Input == Elevator floor
+		-if User Input == Elevator floor, then call Elevator Floor
+			-raise right arm, with right hand index finger, push Elevator Floor == User Input
+-otherwise, request for User Input 
