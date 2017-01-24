@@ -19,3 +19,5 @@ A commit records changes to the repository. A good commit message succinctly des
 * What is a merge conflict?
 
 A merge conflict is when two branches have changes that disagree or contain conflicting information such that they cannot be combined. Specifically, merge conflicts occur when one of the merging branches have commits that do not exist in the other branch. 
+
+##This is the new change
