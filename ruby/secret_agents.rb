@@ -9,8 +9,9 @@ def encrypt(password)
   puts answer
 end
 
-encrypt ('abc')
-encrypt ('zed')
+=begin encrypt ('abc')
+encrypt ('zed') 
+=end
 
 def decrypt(npassword)
   alphabet = "abcdefghijklmnopqrstuvwxyz"
@@ -27,7 +28,23 @@ def decrypt(npassword)
   puts together
 end
 
-decrypt ('bcd')
+=begin decrypt ('bcd')
 decrypt ('afe')
+=end
 
-puts decrypt(encrypt("swordfish"))
+# Our Driver Code
+
+#Ask user if they would like to encrypt or decrypt 
+#their password
+puts "Would you like to encrypt or decrypt your password?"
+user = gets.chomp
+
+#Ask user what is your password?
+puts "Please enter your password:"
+user_password = gets.chomp
+
+#Then call the method
+if user == "encrypt" or user =="Encrypt"
+	then puts encrypt(user_password)
+else puts decrypt(user_password)
+end
