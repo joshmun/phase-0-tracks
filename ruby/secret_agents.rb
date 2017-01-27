@@ -1,25 +1,33 @@
 def encrypt(password)
   index = 0
+  answer = ""
 	while index < password.length
 	  single = password[index]
-	  puts single.next
-		index += 1
+	  answer += single.next
+		index = index + 1
   end
- puts password
+  puts answer
 end
-encrypt('abc')
+
+encrypt ('abc')
+encrypt ('zed')
 
 def decrypt(npassword)
   alphabet = "abcdefghijklmnopqrstuvwxyz"
   index = 0
+  together = ""
   while index < npassword.length
     nsingle = npassword[index]
     alphanum = alphabet.index(nsingle)
     dcpt = alphanum - 1
     final = alphabet[dcpt]
-    puts final
+    together += final
     index += 1
   end
+  puts together
 end
 
-decrypt ('dec')
+decrypt ('bcd')
+decrypt ('afe')
+
+puts decrypt(encrypt("swordfish"))
