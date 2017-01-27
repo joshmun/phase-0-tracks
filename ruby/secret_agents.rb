@@ -1,3 +1,6 @@
+#Method Declarations
+
+#Encrypting Method
 def encrypt(password)
   index = 0
   answer = ""
@@ -13,6 +16,7 @@ end
 encrypt ('zed') 
 =end
 
+#Decrypting Method
 def decrypt(npassword)
   alphabet = "abcdefghijklmnopqrstuvwxyz"
   index = 0
