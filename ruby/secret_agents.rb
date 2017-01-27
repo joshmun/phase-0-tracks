@@ -9,7 +9,7 @@ def encrypt(password)
 	  answer += single.next
 		index = index + 1
   end
-  puts answer
+  p answer
 end
 
 =begin encrypt ('abc')
@@ -29,7 +29,7 @@ def decrypt(npassword)
     together += final
     index += 1
   end
-  puts together
+  p together
 end
 
 =begin decrypt ('bcd')
@@ -52,3 +52,15 @@ if user == "encrypt" or user =="Encrypt"
 	then puts encrypt(user_password)
 else puts decrypt(user_password)
 end
+
+p decrypt(encrypt("swordfish"))
+
+#This nested call method works because the program reads what's
+#inside the parenthesis first. So it runs encryption first,
+#then it decrypts that encryption back to swordfish,
+#then finally prints that final line post-execution of
+#encryption--> decryption. 
+#there are three print statements because the methods
+#themselves are called to print after the method is 
+#complete, thus 3 prints: 1) encrypt 2) decrypt
+#3) decrypt(encrypt).
