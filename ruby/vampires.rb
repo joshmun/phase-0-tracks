@@ -8,32 +8,29 @@ age = gets.chomp.to_i
 puts "What year were you born?"
 born = gets.chomp.to_i
 
-puts = "Our company cafeteria serves garlic bread. Should we order some for you?"
+puts "Our company cafeteria serves garlic bread. Should we order some for you?"
 garlic_bread = gets.chomp
 
-puts = "Would you like to enroll in the company's health insurance?"
+puts "Would you like to enroll in the company's health insurance?"
 health = gets.chomp
 
 #Boolean Conidition Declarations
 #Year comparison against age
 year = 2017
-born_true = year - age
-born_false != year - age
+born_true = (year - born) == age
 #if born_true == born
 #	p "You are a vampire!"
 #end
 
 #Setting variables
-yes = "yes"
-no = "no"
+yes = "yes", "Yes"
+no = "no", "No"
 
 #Garlic Bread
 gb_true = garlic_bread == yes
-gb_false = garlic_bread == no
 
 #Insurance
 health_true = health == yes
-health_false = health == no
 
 #If the employee got their age right, 
 #and is willing to eat garlic bread 
@@ -47,14 +44,14 @@ case
 #and hates garlic bread or waives insurance, 
 #the result is “Probably a vampire.”
 
-	when born_false && (gb_false || health_false)
+	when !born_true && (!gb_true || !health_true)
 		p "Probably a vampire."
 
 #If the employee got their age wrong, 
 #hates garlic bread, and doesn’t want insurance, 
 #the result is “Almost certainly a vampire.”
 
-	when born_false && gb_false && health_false
+	when !born_true && !gb_true && !health_true
 		p "Almost certainly a vampire."
 
 #Even if the employee is an amazing liar otherwise, 
@@ -62,10 +59,8 @@ case
 #is clearly a vampire, because come on. 
 #In that case, you should print “Definitely a vampire.”
 
-	when name = "Drake Cula", "Tu Fang"
+	when name == "Drake Cula" || name == "Tu Fang"
 		p "Definitely a vampire."
 
 	else puts "Results inconclusive."
 end
-
-
