@@ -19,6 +19,17 @@ while current_employee <= employees
 	puts "Would you like to enroll in the company's health insurance?"
 	health = gets.chomp
 
+		until allergy == "Done" || allergies == "done"
+			puts "Please name any allergies you have one at at time, when you are finished please enter 'done'."
+			allergy = gets.chomp
+			p allergies = allergies + ", " + allergy
+			if allergy = "Sunshine", "sunshine"
+				then puts "Probably a vampire."
+				break
+			end
+		end
+
+
 	#Boolean Conidition Declarations
 	#Year comparison against age
 	year = 2017
