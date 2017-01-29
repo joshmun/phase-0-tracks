@@ -1,10 +1,11 @@
 #Driver Code
+
 puts "How many employees will you be processing?"
 employees = gets.chomp.to_i
 current_employee = 1
 
 while current_employee <= employees
-	puts "What is your name?"
+puts "What is your name?"
 	name = gets.chomp
 
 	puts "How old will you be this year?"
@@ -19,24 +20,24 @@ while current_employee <= employees
 	puts "Would you like to enroll in the company's health insurance?"
 	health = gets.chomp
 
-		until allergy == "Done" || allergies == "done"
+#Allergy conditionals
+
+	allergy = ""
+	allergies = ""
+		until allergy == "Done" || allergy == "done"
 			puts "Please name any allergies you have one at at time, when you are finished please enter 'done'."
 			allergy = gets.chomp
-			p allergies = allergies + ", " + allergy
-			if allergy = "Sunshine", "sunshine"
-				then puts "Probably a vampire."
-				break
-			end
+			allergies += allergy + ", "
 		end
-
+		if allergies.include? ("sunshine")
+			puts "Probably a vampire."
+			break
+		end
 
 	#Boolean Conidition Declarations
 	#Year comparison against age
 	year = 2017
 	born_true = (year - born) == age
-	#if born_true == born
-	#	p "You are a vampire!"
-	#end
 
 	#Setting variables
 	yes = "yes", "Yes"
@@ -54,14 +55,14 @@ while current_employee <= employees
 	#the result is “Probably not a vampire.”
 
 		case
-			when born_true && (gb_true || health_true)
+			when born_true && gb_true || health_true
 				p "Probably not a vampire."
 
 		#If the employee got their age wrong, 
 		#and hates garlic bread or waives insurance, 
 		#the result is “Probably a vampire.”
 
-			when !born_true && (!gb_true || !health_true)
+			when !born_true && !gb_true || !health_true
 				p "Probably a vampire."
 
 		#If the employee got their age wrong, 
@@ -83,3 +84,4 @@ while current_employee <= employees
 		end
 	current_employee += 1
 end
+puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
