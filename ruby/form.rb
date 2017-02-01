@@ -20,6 +20,10 @@ puts "What do you want to say??"
 blog = gets.chomp
 post[:body] = blog
 
+puts "Anything else?"
+more = gets.chomp
+post[:more] = more
+
 p post
 
 post[:author] + post[:title]
