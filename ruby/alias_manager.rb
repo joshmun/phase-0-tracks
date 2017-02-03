@@ -1,4 +1,5 @@
 agent = ""
+final_name = ""
 until agent == "quit" do
 #Driver Code
 puts "Hello, welcome to the secret agent name converter. Please enter your first and last name."
@@ -6,6 +7,9 @@ agent = gets.chomp
 	if agent == "quit"
 		break
 	end
+secret_agent = {
+}
+secret_agent[:agent].push(agent)
 #Pseudocode
 #Fake-Name Generator
 
@@ -101,8 +105,11 @@ def cons_adv(letters)
 		cap_word.join(" ")
 end
 
-p "Your new secret agent name is #{cons_adv (vowel_change)}! If you accept, exit the program by entering 'quit'."
+final_name = cons_adv (vowel_change)
+secret_agent[:converted].push(final_name)
 
+p "Your new secret agent name is #{final_name}! If you accept, exit the program by entering 'quit'."
+p secret_agent
 end
 #Pseudocode
 # Define a method that advances a letter to the next consonant
