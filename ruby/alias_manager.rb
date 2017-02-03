@@ -30,26 +30,25 @@ def swap(name)
 	rev = rev_arr.join(" ")
 end
 
-swap_real = swap ("Felicia Torres")
+swap_real = swap ("Joshua Mun")
 p swap_real
 
 
 def vow_adv(letters)
 	vowels = ["a", "e", "i", "o", "u"]
+	rot_vowels = vowels.rotate
 	index_counter = 0
+	nxt_vowel = ""
 	down_array = letters.downcase!.split("") #downcase and creates array of user input
 	#length = down_array.length #grabs length
 	down_array.each do |letter|
 		if vowels.include? (letter)
-			#dwn_ary_indx =	down_array.index(letter)
-			#p "dwn_ary_indx: #{dwn_ary_indx}"
 			vow_indx	= vowels.index(letter)
-			vow_indx_next = vow_indx + 1
-			#p vow_indx_next
-			nxt_vowel = vowels[vow_indx_next]
-			#p nxt_vowel
-			#p "nxt_vowel: #{nxt_vowel.class}"
+			nxt_vowel = rot_vowels[vow_indx]
 			down_array[index_counter] = nxt_vowel
+			# vow_indx_next = vow_indx + 1
+			# nxt_vowel = vowels[vow_indx_next]
+			# down_array[index_counter] = nxt_vowel
 		end
 	index_counter += 1
 	end
