@@ -1,33 +1,56 @@
 #Pseudocode
 #Secret Agent Name Generator
 
-#Initialize hash data structure, two arrays {:agent, :converted}
-#Initialize agent empty string for user input
-#Initialize final_name empty string for after conversion
-#Initialize restart empty string to hold user input to restart method
+#Setting Up:
+# => Initialize secret_agents hash data structure, two arrays {:agent, :converted}
+# => Initialize final_name empty string for after conversion
+# => Initialize restart empty string to hold user input to restart method
 
-#define a method with a string as a single parameter
-#take the input and split it into an array
-#take that input and swap or reverse the order
-#combine them into a single array
-#then select for vowels
+#Secret Agent Methods:
+#Initialize until loop, until restart == 'quit' then execute methods
+#Initialize driver code, request user their first and last name
+# => define agent = gets.chomp
+# Shovel agent into :agent array of secret_agents hash
 
-#identify the vowel
-#if it is, identify the next vowel in the vowels array
-#replace the element in downarray with the next vowel in vowels array
+#Swap Method:
+#define method swap(name)
+#split by (" ") to separate name into 2 elements
+#reverse and store in new array
+#join the new array by (" ")
+#end
+#call the method, and store the value in swap_real
 
-#includes, each with index 
+#Vowel Advance Method:
+#define method vow_adv(letters)
+#Initialize vowels array containing only vowels, aeiou
+#rotate the vowels and store in new array
+# => this represents vowels.index + 1
+#Initialize index counter 
+# => we will refer to this count to match index replacements
+#Initialize nxt_vowel
+# => store vowels.index + 1 in this string
+#Downcase and split swap_real("") into new array (down_array)
+#Initialize .each loop 
+# => if an element from down_array is contained in vowels array
+#then grab that vowel index
+# => store vowel index as new integer vow_indx
+#Call the rotated vowels array
+# => and grab the indexed element matching the original vow_indx
+# => store this vowel+1 vowel in new string nxt_vowel
+#replace down_array indexed at index counter
+# => replace with nxt_vowel
+#end if then
+#increment index counter
+#end each loop
+#return and join down_array into string ("")
+#end method
+#store method call value as vowel_change
+#return vowel_change
 
-#first get the index value from vowels
-#get the vowel at index+1
-#downarray.each with index
-#downarray[index] = vowels[index + 1]
+#Consonant Advance Method:
+#define new method cons_adv(letters)
+#initialize 
 
-#
-# => match these vowels as an index against the vowels variable
-# and rotate them to next vowel
-# => and take all of the consonants and shift them to next consonant
-#print that baby
 
 secret_agent = {
 	agent: [],
@@ -82,7 +105,6 @@ until restart == "quit" do
 		
 		
 		def cons_adv(letters)
-			indv_name = ""
 			consonant = "BCDFGHJKLMNPQRSTVWXYZ"
 			consonant_array = consonant.downcase!.split("")
 			rot_cons = consonant_array.rotate
