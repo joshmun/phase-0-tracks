@@ -8,8 +8,10 @@ agent = gets.chomp
 		break
 	end
 secret_agent = {
+	agent: [],
+	converted: []
 }
-secret_agent[:agent].push(agent)
+secret_agent[:agent]<<agent
 #Pseudocode
 #Fake-Name Generator
 
@@ -106,7 +108,7 @@ def cons_adv(letters)
 end
 
 final_name = cons_adv (vowel_change)
-secret_agent[:converted].push(final_name)
+secret_agent[:converted]<<final_name
 
 p "Your new secret agent name is #{final_name}! If you accept, exit the program by entering 'quit'."
 p secret_agent
