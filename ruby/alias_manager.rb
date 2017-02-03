@@ -1,22 +1,10 @@
-secret_agent = {
-	agent: [],
-	converted: []
-}
-agent = ""
-final_name = ""
-restart = ""
-until restart == "quit" do
-#Driver Code
-	# if restart == "quit"
-	# 	break
-	# end
-puts "Hello, welcome to the secret agent name converter. Please enter your first and last name."
-agent = gets.chomp
-
-
-secret_agent[:agent]<<agent
 #Pseudocode
-#Fake-Name Generator
+#Secret Agent Name Generator
+
+#Initialize hash data structure, two arrays {:agent, :converted}
+#Initialize agent empty string for user input
+#Initialize final_name empty string for after conversion
+#Initialize restart empty string to hold user input to restart method
 
 #define a method with a string as a single parameter
 #take the input and split it into an array
@@ -41,176 +29,96 @@ secret_agent[:agent]<<agent
 # => and take all of the consonants and shift them to next consonant
 #print that baby
 
-def swap(name)
-	arr_name = name.split(" ")
-	rev_arr = arr_name.reverse
-	rev = rev_arr.join(" ")
-end
+secret_agent = {
+	agent: [],
+	converted: []
+}
+agent = ""
+final_name = ""
+restart = ""
 
-swap_real = swap (agent)
-swap_real
+until restart == "quit" do
 
-
-def vow_adv(letters)
-	vowels = ["a", "e", "i", "o", "u"]
-	rot_vowels = vowels.rotate
-	index_counter = 0
-	nxt_vowel = ""
-	down_array = letters.downcase!.split("") #downcase and creates array of user input
-	#length = down_array.length #grabs length
-	down_array.each do |letter|
-		if vowels.include? (letter)
-			vow_indx	= vowels.index(letter)
-
-			#New Code, with edge case
-			nxt_vowel = rot_vowels[vow_indx]
-			down_array[index_counter] = nxt_vowel
-
-			#Old Code, without edge case consideration
-			# vow_indx_next = vow_indx + 1
-			# nxt_vowel = vowels[vow_indx_next]
-			# down_array[index_counter] = nxt_vowel
-
+	##Driver Code
+	puts "Hello, welcome to the secret agent name converter. Please enter your first and last name."
+	agent = gets.chomp
+	
+	secret_agent[:agent]<<agent
+	
+		def swap(name)
+			arr_name = name.split(" ")
+			rev_arr = arr_name.reverse
+			rev = rev_arr.join(" ")
 		end
-	index_counter += 1
-	end
-down_array.join("")
-end
-
-vowel_change = vow_adv (swap_real)
-vowel_change
-
-
-def cons_adv(letters)
-	indv_name = ""
-	consonant = "BCDFGHJKLMNPQRSTVWXYZ"
-	consonant_array = consonant.downcase!.split("")
-	rot_cons = consonant_array.rotate
-	index_counter = 0
-	letters_array = letters.split("")
-		letters_array.each do |letter|
-			if consonant_array.include? (letter)
-			cons_indx = consonant_array.index(letter)
-
-			#New Code, with edge case
-			nxt_cons = rot_cons[cons_indx]
-			letters_array[index_counter] = nxt_cons
-
-				#Old Code, without edge case consideration
-				# nxt_cons_indx = cons_indx + 1
-				# nxt_cons = consonant_array[nxt_cons_indx]
-				# letters_array[index_counter] = nxt_cons
-
+		swap_real = swap (agent)
+		swap_real #First and Last Name Swapped
+		
+		
+		def vow_adv(letters)
+			vowels = ["a", "e", "i", "o", "u"]
+			rot_vowels = vowels.rotate
+			index_counter = 0
+			nxt_vowel = ""
+			down_array = letters.downcase!.split("") #downcase and creates array of user input
+				down_array.each do |letter|
+					if vowels.include? (letter)
+						vow_indx	= vowels.index(letter)
+			
+						#New Code, with edge case
+						nxt_vowel = rot_vowels[vow_indx]
+						down_array[index_counter] = nxt_vowel
+			
+						#Old Code, without edge case consideration
+						# vow_indx_next = vow_indx + 1
+						# nxt_vowel = vowels[vow_indx_next]
+						# down_array[index_counter] = nxt_vowel
+					end
+				index_counter += 1
+				end
+			down_array.join("")
+		end
+		vowel_change = vow_adv (swap_real)
+		vowel_change #Vowels advanced in agent name
+		
+		
+		def cons_adv(letters)
+			indv_name = ""
+			consonant = "BCDFGHJKLMNPQRSTVWXYZ"
+			consonant_array = consonant.downcase!.split("")
+			rot_cons = consonant_array.rotate
+			index_counter = 0
+			letters_array = letters.split("")
+				letters_array.each do |letter|
+					if consonant_array.include? (letter)
+					cons_indx = consonant_array.index(letter)
+		
+					#New Code, with edge case
+					nxt_cons = rot_cons[cons_indx]
+					letters_array[index_counter] = nxt_cons
+		
+						#Old Code, without edge case consideration
+						# nxt_cons_indx = cons_indx + 1
+						# nxt_cons = consonant_array[nxt_cons_indx]
+						# letters_array[index_counter] = nxt_cons
+					end
+				index_counter += 1
+				end
+			secret_name = letters_array.join("") #combined name without capitalized
+			split_array = secret_name.split(" ")
+			cap_word = split_array.map! { |word| word.to_s.capitalize}
+			cap_word.join(" ")
+		end
+		final_name = cons_adv (vowel_change) #Add consonant advance with capitalizaton
+		secret_agent[:converted]<<final_name
+		
+	puts "Your new secret agent name is #{final_name}!" 
+	puts "If you accept, exit by entering 'quit'. Otherwise, enter again."
+	restart = gets.chomp
+		if restart == "quit" #Provides user to loop program until quit
+			for i in 0...secret_agent[:agent].length
+				puts "#{secret_agent[:converted][i]} is really #{secret_agent[:agent][i]}."
 			end
-		index_counter += 1
+			break
+		else #Continues loop if user enters
 		end
-	secret_name = letters_array.join("") #combined name without capitalized
-	split_array = secret_name.split(" ")
-		cap_word = split_array.map! { |word| word.to_s.capitalize}
-		cap_word.join(" ")
 end
-
-final_name = cons_adv (vowel_change)
-secret_agent[:converted]<<final_name
-
-puts "Your new secret agent name is #{final_name}!" 
-puts "If you accept, exit by entering 'quit'. Otherwise, enter again."
-restart = gets.chomp
-	if restart == "quit"
-		for i in 0...secret_agent[:agent].length
-			puts "#{secret_agent[:converted][i]} is really #{secret_agent[:agent][i]}."
-		end
-		break
-	else 
-	end
-#p secret_agent
-end
-#Pseudocode
-# Define a method that advances a letter to the next consonant
-# It will take in the input from vowel_change = letters
-# initialize index_counter = 0, we will map the change according to this counter
-# Split letters into an array of elements = name_array
-
-#Initialize each loop to do |letter|
-	#if vowels.include? (letter) [if the vowels contains a letter from name_array]
-	#then return letter [vowel]
-	#else nxt_lttr = letter.next [push the consonant next]
-		#if vowels.include? (nxt_lttr) [if the vowels include a letter from name_array]
-		#then nxt_lttr.next [push the nxt_lttr as vowel to consonant]
-		#end
-	#index_counter += 1
-	#end	
-# name_array[index_counter] = nxt_lttr
-#end
-
-=begin
-def cons_adv(letters)
-	vowels = ["a", "e", "i", "o", "u"]
-	index_counter = 0
-	name_array = letters.split("")
-	nxt_lttr = ""
-		name_array.each do |letter|
-			if vowels.include? (letter)
-			return letter
-			else letter.next!
-				# if vowels.include? (nxt_lttr)
-				# 	nxt_lttr.next
-				# end
-			end
-		index_counter += 1
-		name_array[index_counter] = letter
-		end
-	name_array.join("")
-end
-
-p cons_adv (vowel_change)
-=end
-
-#if dwn_ary_indx == !index
-=begin	
-	index = 0
-	 for i in 0..length do 
-	 	puts i
-	 	 if i == vowels
-	 	 	vowels.index
-	 end
-
-
-def swap(name)
-	vowels = ["a", "e", "i", "o", "u"]
-	name.split(" ").reverse.join(" ")	#reverses order of array
-	letter = name.chars #breaks each character individual in array
-	vow = letter.select { |v| v =~ /[aeiou]/} #selects for only the vowels in the string into a new array
-		if vow.include? vowels
-
-	if letter.include? vowels
-			then vowels.rotate(1)[vowels.index(letter)]
-		else 
-			letter
-		end
-
-	#p vow
-		#rotates to next vowel
-	#ind_name = name.split(" ") #.reverse.join(" ")
-	#ind_name.reverse!
-	#together = ind_name.join(" ")
-	#vowels = together.select("a, e, i, o, u")
-	#nvowels = vowels.next
-	#end
-
-
-#p swap("Felicia Torres")
-
- def v_forward(vowel)
-	vowels = ["a", "e", "i", "o", "u"]
-	vowel = vowel.split('')
-	v_new = vowel.map do |char|
-		if vowe
-
-	end
-
-
-p v_forward ("Torres Felicia")
-=end
-
-
