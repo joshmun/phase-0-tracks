@@ -1,3 +1,11 @@
+agent = ""
+until agent == "quit" do
+#Driver Code
+puts "Hello, welcome to the secret agent name converter. Please enter your first and last name."
+agent = gets.chomp
+	if agent == "quit"
+		break
+	end
 #Pseudocode
 #Fake-Name Generator
 
@@ -30,8 +38,8 @@ def swap(name)
 	rev = rev_arr.join(" ")
 end
 
-swap_real = swap ("Joshua Mun")
-p swap_real
+swap_real = swap (agent)
+swap_real
 
 
 def vow_adv(letters)
@@ -44,11 +52,16 @@ def vow_adv(letters)
 	down_array.each do |letter|
 		if vowels.include? (letter)
 			vow_indx	= vowels.index(letter)
+
+			#New Code, with edge case
 			nxt_vowel = rot_vowels[vow_indx]
 			down_array[index_counter] = nxt_vowel
+
+			#Old Code, without edge case consideration
 			# vow_indx_next = vow_indx + 1
 			# nxt_vowel = vowels[vow_indx_next]
 			# down_array[index_counter] = nxt_vowel
+
 		end
 	index_counter += 1
 	end
@@ -56,21 +69,29 @@ down_array.join("")
 end
 
 vowel_change = vow_adv (swap_real)
-p vowel_change
+vowel_change
 
 
 def cons_adv(letters)
 	indv_name = ""
 	consonant = "BCDFGHJKLMNPQRSTVWXYZ"
 	consonant_array = consonant.downcase!.split("")
+	rot_cons = consonant_array.rotate
 	index_counter = 0
 	letters_array = letters.split("")
 		letters_array.each do |letter|
 			if consonant_array.include? (letter)
 			cons_indx = consonant_array.index(letter)
-			nxt_cons_indx = cons_indx + 1
-			nxt_cons = consonant_array[nxt_cons_indx]
+
+			#New Code, with edge case
+			nxt_cons = rot_cons[cons_indx]
 			letters_array[index_counter] = nxt_cons
+
+				#Old Code, without edge case consideration
+				# nxt_cons_indx = cons_indx + 1
+				# nxt_cons = consonant_array[nxt_cons_indx]
+				# letters_array[index_counter] = nxt_cons
+
 			end
 		index_counter += 1
 		end
@@ -80,8 +101,9 @@ def cons_adv(letters)
 		cap_word.join(" ")
 end
 
-p cons_adv (vowel_change)
+p "Your new secret agent name is #{cons_adv (vowel_change)}! If you accept, exit the program by entering 'quit'."
 
+end
 #Pseudocode
 # Define a method that advances a letter to the next consonant
 # It will take in the input from vowel_change = letters
@@ -169,6 +191,5 @@ def swap(name)
 
 p v_forward ("Torres Felicia")
 =end
-
 
 
