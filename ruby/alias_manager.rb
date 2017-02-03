@@ -59,6 +59,30 @@ end
 vowel_change = vow_adv (swap_real)
 p vowel_change
 
+
+def cons_adv(letters)
+	indv_name = ""
+	consonant = "BCDFGHJKLMNPQRSTVWXYZ"
+	consonant_array = consonant.downcase!.split("")
+	index_counter = 0
+	letters_array = letters.split("")
+		letters_array.each do |letter|
+			if consonant_array.include? (letter)
+			cons_indx = consonant_array.index(letter)
+			nxt_cons_indx = cons_indx + 1
+			nxt_cons = consonant_array[nxt_cons_indx]
+			letters_array[index_counter] = nxt_cons
+			end
+		index_counter += 1
+		end
+	secret_name = letters_array.join("") #combined name without capitalized
+	split_array = secret_name.split(" ")
+		cap_word = split_array.map! { |word| word.to_s.capitalize}
+		cap_word.join(" ")
+end
+
+p cons_adv (vowel_change)
+
 #Pseudocode
 # Define a method that advances a letter to the next consonant
 # It will take in the input from vowel_change = letters
@@ -77,7 +101,7 @@ p vowel_change
 # name_array[index_counter] = nxt_lttr
 #end
 
-
+=begin
 def cons_adv(letters)
 	vowels = ["a", "e", "i", "o", "u"]
 	index_counter = 0
@@ -98,6 +122,7 @@ def cons_adv(letters)
 end
 
 p cons_adv (vowel_change)
+=end
 
 #if dwn_ary_indx == !index
 =begin	
