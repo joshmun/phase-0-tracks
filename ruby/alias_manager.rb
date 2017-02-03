@@ -33,7 +33,7 @@ secret_agent = {
 	agent: [],
 	converted: []
 }
-agent = ""
+
 final_name = ""
 restart = ""
 
