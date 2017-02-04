@@ -49,7 +49,44 @@
 
 #Consonant Advance Method:
 #define new method cons_adv(letters)
-#initialize 
+#Initialize consonant array 
+#downcase and split into new array, store in consonant_array
+#rotate the consonant array and store as new array rot_cons
+#Initialize index counter
+# => will map replacements according to this loop counter
+#split vowel_change and store into new array (letters_array)
+#Iniitialize each loop
+# => if an element from letters_array is contained in consonant_array
+# => then grab index value of matched element in letters_array
+# => store index value cons_indx
+#use cons_indx as index value to grab consonant+1 from rot_cons
+# => store advanced consonant in new string nxt_cons
+#replace letters_array[index_counter] with nxt cons
+#end if then
+#increment index_counter
+#end each loop
+#join letters array into new string, store
+#split letters array into 2 elements
+#each loop to capitalize each element
+#join the array into string again
+#end method
+#store the capitalized, vowel + cons adv name into final_name
+#shovel final_name into :converted hash
+
+#Print to console their new secret agent name
+#Ask user if they are satisified
+# => quit to exit program
+# => enter to re-enter the program
+#set user input as restart string
+#if restart is quit
+# => Initialize for loop, 0 to length of any array in hash
+# => print each iteration that secret agent name is really agent name
+# => #end for loop
+#break the code if restart is quit
+#else to move onto rest of program
+#end if then
+
+#End until loop
 
 
 secret_agent = {
