@@ -22,23 +22,38 @@ ops = {
 until calc == 'done'
 	puts "Please enter your calculation. Enter 'done' to finish."
 	calc = gets.chomp
-	ops[:compute].push(calc)
+
 		elements = calc.split("")
 		num1 = elements[0].to_i
 		operator = elements[1]
 		num2 = elements[2].to_i
 	answer = calculator(num1, operator, num2)
-	ops[:answer].push(answer)
 	calc_count += 1
-		if calc == 'done'
-		puts "#{calc_count-1} calculations performed:"
+
+	unless calc == 'done'
+	ops[:compute].push(calc)
+	ops[:answer].push(answer)
+
+	else
+		calc_eval = calc_count-1
+		puts "#{calc_eval} calculations performed:"
 			pcycle = 0
-				until pcycle == calc_count do
-				puts "#{ops[:compute][pcycle]} = #{ops[:answer][pcycle]}"
-				pcycle += 1
-			end
+				until pcycle == calc_eval do
+					ops[:answer].each do |i|
+						if i == nil
+						indx = ops[:answer].index(i)
+						ops[:answer].compact!
+						ops[:compute].delete_at(indx)
+						end
+					end
+					history = "#{ops[:compute][pcycle]} = #{ops[:answer][pcycle]}"
+					unless history == " = " || history == "#{ops[:compute][pcycle]} = "
+					puts history
+					pcycle += 1
+					end
+				end
 		break
-		end
+	end
 	if answer == nil
 	puts "Sorry, What is the first number in your calculation?"
 	num1 = gets.chomp.to_i
