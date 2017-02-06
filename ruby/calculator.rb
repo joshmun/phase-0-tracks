@@ -57,8 +57,6 @@ until calc == 'done'
 	end
 end
 
-
-
 # #Driver Code
 # p calculator (3, '+', 2)
 # p calculator (100, '-', 10)
