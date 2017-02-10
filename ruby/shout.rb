@@ -32,3 +32,27 @@
 
 # plane = Plane.new
 # puts plane.take_off(30000)
+
+module Shout
+	def yell_angrily(words)
+		words + "!!!" + " >:O"
+	end
+
+	def yell_happily(words)
+		words + "!!!" + " :)"
+	end
+end
+
+class Human
+	include Shout
+end
+
+class Lion
+	include Shout
+end
+
+Bob = Human.new
+p Bob.yell_happily("Woohoo")
+
+Simba = Lion.new
+p Simba.yell_angrily("ROOAAARR")
