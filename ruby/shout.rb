@@ -51,8 +51,11 @@ class Lion
 	include Shout
 end
 
+#Driver Code
 Bob = Human.new
 p Bob.yell_happily("Woohoo")
+p Bob.yell_angrily("NO WAY")
 
 Simba = Lion.new
 p Simba.yell_angrily("ROOAAARR")
+p Simba.yell_happily("rawr")
