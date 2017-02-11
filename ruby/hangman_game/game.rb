@@ -1,6 +1,6 @@
 class Game
 	attr_accessor :secret_word_array, :guess_letter, :available_guesses
-	attr_reader :is_over, :final_array, :bank_guess, :victory
+	attr_reader :is_over, :final_array, :bank_guess, :victory, :determination
 
 	def initialize(secret_word)
 		@is_over = false
@@ -31,13 +31,17 @@ class Game
 				@available_guesses
 			else @available_guesses -= 1
 			end
+		
 		puts "I am available guesses: #{@available_guesses}"
+		if @available_guesses == 0
+			then @is_over = true
+		end
 	end
 
-	def game_over
-		if @available_guesses == 0
-			@is_over = true
-			@victory = false
+	def game_over(determination)
+		if determination == 0
+			then @is_over = true
+			# @victory = false
 		end
 	end
 
@@ -71,18 +75,20 @@ secret_word = gets.chomp
 hangman = Game.new(secret_word)
 puts "Thank you, please pass this to the 2nd player."
 
-while @is_over != true
+until @is_over == true
 	puts "2nd player, please guess a letter!"
 	guess_letter = gets.chomp
 	puts "I am guess letter: #{guess_letter}"
 
 	hangman.remove_guesses(guess_letter)
+	# if @available_guesses == 0
+	# 	then @is_over = true
+	# 	break
+	# end
+	puts "What is available guesses between methods? #{@available_guesses}"
+	hangman.game_over(@available_guesses)
+	# puts "I've ran gameover!"
 
-	hangman.game_over 
-		if @is_over == true
-			then puts "YOU LOSE. So sad. Goodbye."
-			break
-		end
 	
 	puts hangman.comparison(guess_letter)
 
@@ -94,4 +100,6 @@ while @is_over != true
 			break
 		end
 end
+
+puts "You Lose."
 
