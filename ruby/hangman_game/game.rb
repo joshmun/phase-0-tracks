@@ -24,16 +24,13 @@ class Game
 	def remove_guesses(guess)
 		puts "I am guess class: #{guess.class}"
 			if @secret_word_array.include?(guess)
-				@available_guesses - 1
+				@available_guesses
+			elsif bank_guess.include?(guess)
+				@available_guesses
+			elsif @final_array.include?(guess)
+				@available_guesses
+			else @available_guesses -= 1
 			end
-			# case guess
-			# when @secret_word_array.include?(guess)
-			# 	@available_guesses - 1
-			# when bank_guess.include?(guess)
-			# 	@available_guesses - 1
-			# when @final_array.include?(guess)
-			# 	@available_guesses - 1 
-			# end
 		puts "I am available guesses: #{@available_guesses}"
 	end
 
