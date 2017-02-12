@@ -1,19 +1,20 @@
 class Game
 	attr_accessor :secret_word_array, :guess_letter, :available_guesses
-	attr_reader :is_over, :final_array, :bank_guess, :victory, :determination
+	attr_reader :is_over, :goal, :bank_guess, :victory, :determination
 
 	def initialize(secret_word)
 		@is_over = false
-		@secret_word_array = secret_word.split("")
-		 # p "I am a secret word array: #{@secret_word_array}"
+		@secret_word_array = secret_word.split('')
+		 puts "I am a secret word array: #{@secret_word_array}"
 		@available_guesses = @secret_word_array.length
 		 # p "I am available guesses: #{@available_guesses}"
 		@available_guesses.times do |i|
-			@final_array = "_" * (i + 1)
+			@goal = "_" * (i + 1)
 		end
 		@bank_guess = []
 		@guess_letter = ""
-	# p "I am final_array #{@final_array}"
+		@victory = false
+	# p "I am goal #{@goal}"
 	end
 
 	def store_guess(store)
@@ -27,7 +28,7 @@ class Game
 				@available_guesses
 			elsif bank_guess.include?(guess)
 				@available_guesses
-			elsif @final_array.include?(guess)
+			elsif @goal.include?(guess)
 				@available_guesses
 			else @available_guesses -= 1
 			end
@@ -39,17 +40,27 @@ class Game
 	def comparison(guess)
 		@secret_word_array.each_with_index { |instance, position|
 			if instance == guess
-				@final_array[position] = @secret_word_array[position]
+				@goal[position] = @secret_word_array[position]
 			end
 		}
-	@final_array
+		final_array = @goal.split('')
+		puts "I am final array #{final_array}"
+			if final_array == @secret_word_array
+				@victory = true
+			else @goal = final_array.join('')
+			end
+		@goal
 	end
 
-	def victory
-		if @final_array == @secret_word_array
-			@victory = true
-		end
-	end
+	# def victory
+	# 	final_array = @goal.split("")
+	# 	puts "I am final array #{final_array}"
+	# 		if final_array == @secret_word_array
+	# 			@victory = true
+	# 		else @goal = final_array.join("")
+	# 		end
+	# 	@goal
+	# end
 end
 
 # User Interface
@@ -70,11 +81,15 @@ while !hangman.is_over
 	hangman.store_guess(guess_letter)
 
 	hangman.victory
-		if @victory == true
-			puts "Congratulations! You're a rockstar!"
-			break
-		end
+	if hangman.victory == true
+		puts "Congratulations! You're a rockstar!"
+		break
+	end
+	if hangman.is_over == true
+		puts "YOU LOSE. So sad. Goodbye."
+		break
+	end
 end
 
-puts "YOU LOSE. So sad. Goodbye."
+
 
