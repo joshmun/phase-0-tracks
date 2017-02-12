@@ -5,9 +5,9 @@ class Game
 	def initialize(secret_word)
 		@is_over = false
 		@secret_word_array = secret_word.split("")
-		 p "I am a secret word array: #{@secret_word_array}"
+		 # p "I am a secret word array: #{@secret_word_array}"
 		@available_guesses = @secret_word_array.length
-		 p "I am available guesses: #{@available_guesses}"
+		 # p "I am available guesses: #{@available_guesses}"
 		@available_guesses.times do |i|
 			@final_array = "_" * (i + 1)
 		end
@@ -22,7 +22,7 @@ class Game
 	end
 
 	def remove_guesses(guess)
-		puts "I am guess class: #{guess.class}"
+		# puts "I am guess class: #{guess.class}"
 			if @secret_word_array.include?(guess)
 				@available_guesses
 			elsif bank_guess.include?(guess)
@@ -31,19 +31,17 @@ class Game
 				@available_guesses
 			else @available_guesses -= 1
 			end
-		
-		puts "I am available guesses: #{@available_guesses}"
 		if @available_guesses == 0
 			then @is_over = true
 		end
 	end
 
-	def game_over
-		puts "Game Over, available_guesses: #{@available_guesses}"
-			if @available_guesses == 0
-				then @is_over = true
-			end
-	end
+	# def game_over
+	# 	puts "Game Over, available_guesses: #{@available_guesses}"
+	# 		if @available_guesses == 0
+	# 			then @is_over = true
+	# 		end
+	# end
 
 	def comparison(guess)
 		counter = -1
@@ -86,7 +84,7 @@ while !hangman.is_over
 	# 	break
 	# end
 	# puts "What is available guesses between methods? #{@available_guesses}"
-	hangman.game_over
+	# hangman.game_over
 	 puts "is over: #{@is_over}"
 
 	
@@ -101,5 +99,5 @@ while !hangman.is_over
 		end
 end
 
-puts "You Lose."
+puts "YOU LOSE. So sad. Goodbye."
 
