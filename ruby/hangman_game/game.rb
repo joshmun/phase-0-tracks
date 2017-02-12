@@ -38,11 +38,11 @@ class Game
 		end
 	end
 
-	def game_over(determination)
-		if determination == 0
-			then @is_over = true
-			# @victory = false
-		end
+	def game_over
+		puts "Game Over, available_guesses: #{@available_guesses}"
+			if @available_guesses == 0
+				then @is_over = true
+			end
 	end
 
 	def comparison(guess)
@@ -75,7 +75,7 @@ secret_word = gets.chomp
 hangman = Game.new(secret_word)
 puts "Thank you, please pass this to the 2nd player."
 
-until @is_over == true
+while !hangman.is_over
 	puts "2nd player, please guess a letter!"
 	guess_letter = gets.chomp
 	puts "I am guess letter: #{guess_letter}"
@@ -85,9 +85,9 @@ until @is_over == true
 	# 	then @is_over = true
 	# 	break
 	# end
-	puts "What is available guesses between methods? #{@available_guesses}"
-	hangman.game_over(@available_guesses)
-	# puts "I've ran gameover!"
+	# puts "What is available guesses between methods? #{@available_guesses}"
+	hangman.game_over
+	 puts "is over: #{@is_over}"
 
 	
 	puts hangman.comparison(guess_letter)
