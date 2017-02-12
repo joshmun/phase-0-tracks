@@ -36,25 +36,10 @@ class Game
 		end
 	end
 
-	# def game_over
-	# 	puts "Game Over, available_guesses: #{@available_guesses}"
-	# 		if @available_guesses == 0
-	# 			then @is_over = true
-	# 		end
-	# end
-
 	def comparison(guess)
-		counter = -1
-		@secret_word_array.each { |instance|
-			p "I am checking secret word array: #{secret_word_array}"
-			puts "I am checking guess letter: #{guess}"
+		@secret_word_array.each_with_index { |instance, position|
 			if instance == guess
-				puts "I am checking the if statement here"
-				puts "I am checking the instance: #{instance}"
-				puts "I am checking the guess: #{guess}"
-				counter += 1
-				@guess_letter = @secret_word_array.at(counter)
-				@final_array[counter] = guess
+				@final_array[position] = @secret_word_array[position]
 			end
 		}
 	@final_array
@@ -79,14 +64,6 @@ while !hangman.is_over
 	puts "I am guess letter: #{guess_letter}"
 
 	hangman.remove_guesses(guess_letter)
-	# if @available_guesses == 0
-	# 	then @is_over = true
-	# 	break
-	# end
-	# puts "What is available guesses between methods? #{@available_guesses}"
-	# hangman.game_over
-	 puts "is over: #{@is_over}"
-
 	
 	puts hangman.comparison(guess_letter)
 
