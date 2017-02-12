@@ -28,10 +28,10 @@
 2. If *available_guesses* = 0, then return is_over = true
 
 #### Comarpison Method
-<!-- 1. Compare the *guessed letter* against the *secret word* -> if *GL* == *SW* then store this as boolean value, **attr readable** *match* -->
-2. If *SW* includes *GL*, then grab index value of *SW* off criteria *GL*, store as integer *sw_position* 
+1. If *SW* includes *GL*, then grab index value of *SW* off criteria *GL*, store as integer *sw_position* 
 	- replace *final_array* index of *sw_position* with *GL* letter
-3. print *final_array*
+2. *final_array* join and print
+<!-- 1. Compare the *guessed letter* against the *secret word* -> if *GL* == *SW* then store this as boolean value, **attr readable** *match* -->
 
 #### When to Store the Guesses
 1. push *GL* into *bank guess* unless *bankguess* includes *GL*
