@@ -5,9 +5,7 @@ class Game
 	def initialize(secret_word)
 		@is_over = false
 		@secret_word_array = secret_word.split('')
-		 puts "I am a secret word array: #{@secret_word_array}"
 		@available_guesses = @secret_word_array.length
-		 # p "I am available guesses: #{@available_guesses}"
 		@available_guesses.times do |i|
 			@goal = "_" * (i + 1)
 		end
@@ -20,6 +18,7 @@ class Game
 	def store_guess(store)
 		@bank_guess << store unless 
 			@bank_guess.include?(store)
+		puts "Letters guessed: #{@bank_guess}"
 	end
 
 	def remove_guesses(guess)
@@ -35,6 +34,7 @@ class Game
 		if @available_guesses == 0
 			then @is_over = true
 		end
+		puts "Available guesses remaining: #{@available_guesses}"
 	end
 
 	def comparison(guess)
@@ -44,23 +44,12 @@ class Game
 			end
 		}
 		final_array = @goal.split('')
-		puts "I am final array #{final_array}"
 			if final_array == @secret_word_array
 				@victory = true
 			else @goal = final_array.join('')
 			end
 		@goal
 	end
-
-	# def victory
-	# 	final_array = @goal.split("")
-	# 	puts "I am final array #{final_array}"
-	# 		if final_array == @secret_word_array
-	# 			@victory = true
-	# 		else @goal = final_array.join("")
-	# 		end
-	# 	@goal
-	# end
 end
 
 # User Interface
@@ -72,7 +61,6 @@ puts "Thank you, please pass this to the 2nd player."
 while !hangman.is_over
 	puts "2nd player, please guess a letter!"
 	guess_letter = gets.chomp
-	puts "I am guess letter: #{guess_letter}"
 
 	hangman.remove_guesses(guess_letter)
 	
@@ -90,6 +78,3 @@ while !hangman.is_over
 		break
 	end
 end
-
-
-
