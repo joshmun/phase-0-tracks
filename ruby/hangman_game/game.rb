@@ -1,6 +1,6 @@
 class Game
-	attr_accessor :secret_word_array, :guess_letter, :available_guesses
-	attr_reader :is_over, :goal, :bank_guess, :victory, :determination
+	attr_accessor :secret_word_array, :guess_letter
+	attr_reader :is_over, :goal, :bank_guess, :victory, :available_guesses
 
 	def initialize(secret_word)
 		@is_over = false
@@ -12,7 +12,6 @@ class Game
 		@bank_guess = []
 		@guess_letter = ""
 		@victory = false
-	# p "I am goal #{@goal}"
 	end
 
 	def store_guess(store)
@@ -22,7 +21,6 @@ class Game
 	end
 
 	def remove_guesses(guess)
-		# puts "I am guess class: #{guess.class}"
 			if @secret_word_array.include?(guess)
 				@available_guesses
 			elsif bank_guess.include?(guess)
