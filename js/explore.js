@@ -15,15 +15,15 @@ var reversed = ("");
 
 function reverseString(word) {
 	var length = word.length;
-		for (var i = length; i >= 0; i -=1) {
+		for (var i = length - 1; i >= 0; i -=1) {
 			var letter = (word[i]);
 			reversed += letter;
 		}
- console.log(reversed);
+ return reversed;
 }
 
 // Driver Code
-reverseString("hello");
+console.log(reverseString("hello"));
 
 if (1 == 1) {
 	console.log(reversed);
