@@ -15,7 +15,7 @@ for (var i = 0; i <= length; i += 1) {
 	console.log(horse)
 }
 
-Constructor Function for Car
+// Constructor Function for Car
 
 function Car(model, make, year, nitrous) {
 	this.model = model;
