@@ -15,3 +15,26 @@ for (var i = 0; i <= length; i += 1) {
 	console.log(horse)
 }
 
+Constructor Function for Car
+
+function Car(model, make, year, nitrous) {
+	this.model = model;
+	this.make = make;
+	this.year = year;
+	this.nitrous = nitrous;
+
+	this.nitro = function() { 
+		if (this.nitrous == true) {console.log("This car has nitro.")
+			console.log("INITIALIZING NITRO.")
+		}	else {console.log("No Boost Available")}
+	}
+	
+	console.log('This is our new car:', this);
+}
+
+// Driver Code 
+console.log("Let's build a car ...");
+
+var minivan = new Car("Mazda", "MPV", 1994, true);
+minivan.nitro();
+console.log("CAR INITIALIZATION COMPLETE");
