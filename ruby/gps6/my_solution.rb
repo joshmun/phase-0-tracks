@@ -121,3 +121,13 @@ end
 
 #=======================================================================
 # Reflection Section
+
+# - One hash syntax is to use the symbol the :symbol which requries the hash rocket =>, otherwise another syntax is to use the syntactic sugar symbol: which incorporates the hash rocket included in the :.
+
+# - Require relative means that it will require a file starting from the relative path of this current file. Require is the same thing, but without the starting directory point of this file.
+
+# - Some ways to iterate through a hash is by using the .each method which provides the key and value variables in the enumerables. There's also each_with_index that provides the index number as well. But we just used the .each for this challenge.
+
+# - What stood out as the variables is that they were methods. The method called 2 other methods, that was crazy and I didn't know methods could do that.
+
+# - Iterating through a hash. That concept was solidifed in this challenge
