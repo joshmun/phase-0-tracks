@@ -10,6 +10,8 @@
 // - return longest_phrase
 
 var phrase = ["long phrase","longest phrase","longer phrase"];
+var kierkegaard = ["Fear and Trembling", "Either/Or", "The Sickness Unto Death", "Works of Love", "Concluding Unscientific Postscript"];
+var TS_Eliot = ["The Waste Land", "Tradition and the Individual Talent", "Murder in the Cathedral"];
 var long = 0;
 
 function Phrase_Finder(phrases) {
@@ -27,3 +29,5 @@ console.log(longest_phrase);
 }
 
 Phrase_Finder(phrase);
+Phrase_Finder(kierkegaard);
+Phrase_Finder(TS_Eliot);
