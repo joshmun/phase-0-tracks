@@ -12,6 +12,10 @@
 var phrase = ["long phrase","longest phrase","longer phrase"];
 var kierkegaard = ["Fear and Trembling", "Either/Or", "The Sickness Unto Death", "Works of Love", "Concluding Unscientific Postscript"];
 var TS_Eliot = ["The Waste Land", "Tradition and the Individual Talent", "Murder in the Cathedral"];
+var sk = {name: "Soren", profession: "Philosopher"};
+var eliot = {name: "Thomas", profession: "Poet"};
+var mayer = {name: "John", profession: "Musician"};
+var jm = {name: "Josh", profession: "Philosopher"};
 var long = 0;
 
 function Phrase_Finder(phrases) {
@@ -28,6 +32,69 @@ function Phrase_Finder(phrases) {
 console.log(longest_phrase);
 }
 
+// Pseudocode
+// - create a function with two parameters, comparing two hashes
+// - use Object.keys(hash) to grab the names of the keys in an array
+// - can use for loop, i to iterate through each of the keys
+// - store this key in the comparison_key
+// - then use Object.values(hash) for the values,
+// - use the same for loop, use the same i to iterate through each of the values
+// - story this value in the comparison_value
+// - need to now break into 2
+// 	- check if comparison_key matches matches the current key
+// 	- check if comparison_value matches current_value
+// 	- if either of these is true, return and print true!
+
+function Match(hash1, hash2) {
+	var h1keys = Object.keys(hash1);
+	var h2keys = Object.keys(hash2);
+	var h1values = Object.values(hash1);
+	var h2values = Object.values(hash2);
+		for (var i = 0; i <= h1keys.length - 1; i += 1) {
+		var keys_match = h1keys[i] == h2keys[i];
+		var values_match = h1values[i] == h2values[i];
+			if (keys_match == true && values_match == true) {
+				var full_match = true;
+			}	else {
+				var full_match = false;
+			}
+		}
+	console.log(full_match);
+}
+
+
+// Pseudocode
+// - Generate_Random_TD function takes an integer, say 3
+// - decalre possible string variable with upper lower letters and numbers
+// - declare empty random_ARY
+// - for loop i = 0, while i <= integer (gives us 3 times)
+// - generate a random number between 1-10 and store = random_number
+// - 
+
+
+function Generate_Random_TD(integer) {
+	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	var random_ARY = [];
+	var random_string = "";
+	var random_number = Math.floor(Math.random() * 10);
+	console.log("I am random number:" + random_number);
+
+	for (j = 0; j <= random_number - 1; j += 1) { // loops how many characters go into this random string
+		var random_poss_number = Math.floor(Math.random() * possible.length);
+		random_string += possible.charAt(random_poss_number);
+		random_string;
+	}
+	for (i = 1; i <= integer; i +=1){ //loops from 1 to integer to push final random sring into random array
+	random_ARY.push(random_string);
+	}
+console.log(random_ARY)
+}
+
 Phrase_Finder(phrase);
 Phrase_Finder(kierkegaard);
 Phrase_Finder(TS_Eliot);
+
+Match(sk, jm);
+Match(sk, mayer);
+
+Generate_Random_TD(5)
