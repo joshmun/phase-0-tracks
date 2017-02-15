@@ -91,10 +91,11 @@ console.log(random_ARY)
 }
 
 Phrase_Finder(phrase);
+
 Phrase_Finder(kierkegaard);
 Phrase_Finder(TS_Eliot);
 
 Match(sk, jm);
 Match(sk, mayer);
 
-Generate_Random_TD(5)
+Generate_Random_TD(5);
