@@ -91,14 +91,17 @@ function Generate_Random_TD(integer) {
 }
 
 // Driver Code
+// Phrase Finder Function Demonstration
 console.log(Phrase_Finder(phrase));
-
 console.log(Phrase_Finder(kierkegaard));
 console.log(Phrase_Finder(TS_Eliot));
 
+// Match Function Demonstration
 console.log(Match(sk, jm))
 console.log(Match(sk, mayer))
 
+// Using Generator Function as argument of Phrase Finder
+// Looping until 10
 var counter = 1
 do {
 console.log(Phrase_Finder(Generate_Random_TD(5)));
