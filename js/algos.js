@@ -62,33 +62,35 @@ function Match(hash1, hash2) {
 	console.log(full_match);
 }
 
-
-// Pseudocode
-// - Generate_Random_TD function takes an integer, say 3
-// - decalre possible string variable with upper lower letters and numbers
-// - declare empty random_ARY
-// - for loop i = 0, while i <= integer (gives us 3 times)
-// - generate a random number between 1-10 and store = random_number
-// - 
-
+// Random Test Data Generator
 
 function Generate_Random_TD(integer) {
 	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	var random_ARY = [];
+	this.random_ARY = [];
 	var random_string = "";
-	var random_number = Math.floor(Math.random() * 10);
+	var loop = 1;
+	var random_number = 0;
+
+	do {
+		random_number = Math.floor(Math.random() * 10);
+	}
+	while (random_number == 0);
+
 	console.log("I am random number:" + random_number);
 
-	for (j = 0; j <= random_number - 1; j += 1) { // loops how many characters go into this random string
-		var random_poss_number = Math.floor(Math.random() * possible.length);
-		random_string += possible.charAt(random_poss_number);
-		random_string;
-	}
-	for (i = 1; i <= integer; i +=1){ //loops from 1 to integer to push final random sring into random array
-	random_ARY.push(random_string);
-	}
-console.log(random_ARY)
+		while (loop <= integer) {
+			for (j = 0; j <= random_number - 1; j += 1) { // loops how many characters go into a single random string
+				var random_poss_number = Math.floor(Math.random() * possible.length);
+				random_string += possible.charAt(random_poss_number);
+			}
+		this.random_ARY.push(random_string);
+		random_string = "";
+		loop += 1;
+		}
+	this.random_ARY;
+	console.log(this.random_ARY);
 }
+
 
 Phrase_Finder(phrase);
 
@@ -98,4 +100,13 @@ Phrase_Finder(TS_Eliot);
 Match(sk, jm);
 Match(sk, mayer);
 
-Generate_Random_TD(5);
+var TestData = new Generate_Random_TD(5);
+console.log(TestData)
+// var counter = 0;
+// do {
+// Generate_Random_TD(5);
+// 	for (var x = 0; x <= 4; x += 1) {
+// 	Phrase_Finder(this.random_ARY[x]);
+// 	}
+// counter += 1; 
+// } while (counter <= 10);
