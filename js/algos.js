@@ -29,7 +29,7 @@ function Phrase_Finder(phrases) {
 		long = current_phrase_length;
 		}
 	}
-console.log(longest_phrase);
+return longest_phrase;
 }
 
 // Pseudocode
@@ -59,7 +59,7 @@ function Match(hash1, hash2) {
 				var full_match = false;
 			}
 		}
-	console.log(full_match);
+	return full_match;
 }
 
 // Random Test Data Generator
@@ -71,11 +71,12 @@ function Generate_Random_TD(integer) {
 	var loop = 1;
 	var random_number = 0;
 
+	this.random = function() {
 		while (loop <= integer) {
 			do {
 				random_number = Math.floor(Math.random() * 10);
 			} while (random_number == 0);
-		console.log("I am random number:" + random_number);
+		// console.log("I am random number:" + random_number);
 			for (j = 0; j <= random_number - 1; j += 1) { // loops how many characters go into a single random string
 				var random_poss_number = Math.floor(Math.random() * possible.length);
 				random_string += possible.charAt(random_poss_number);
@@ -84,26 +85,24 @@ function Generate_Random_TD(integer) {
 		random_string = "";
 		loop += 1;
 		}
-	this.random_ARY;
-	console.log(this.random_ARY);
+	// console.log(this.random_ARY);
+	return this.random_ARY;
+	}
 }
 
+// Driver Code
+console.log(Phrase_Finder(phrase));
 
-Phrase_Finder(phrase);
-
-Phrase_Finder(kierkegaard);
-Phrase_Finder(TS_Eliot);
-
-Match(sk, jm);
-Match(sk, mayer);
+console.log(Phrase_Finder(kierkegaard));
+console.log(Phrase_Finder(TS_Eliot));
 
 var TestData = new Generate_Random_TD(5);
-console.log(TestData)
-// var counter = 0;
-// do {
-// Generate_Random_TD(5);
-// 	for (var x = 0; x <= 4; x += 1) {
-// 	Phrase_Finder(this.random_ARY[x]);
-// 	}
-// counter += 1; 
-// } while (counter <= 10);
+console.log(TestData.random());
+
+var counter = 1
+do {
+var input_phrase = TestData.random();
+console.log(Phrase_Finder(input_phrase));
+// console.log(input_phrase);
+counter += 1;
+} while (counter <= 10);
