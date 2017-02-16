@@ -16,10 +16,10 @@ var sk = {name: "Soren", profession: "Philosopher"};
 var eliot = {name: "Thomas", profession: "Poet"};
 var mayer = {name: "John", profession: "Musician"};
 var jm = {name: "Josh", profession: "Philosopher"};
-var long = 0;
 
 function Phrase_Finder(phrases) {
 	for (var i = 0; i < phrases.length; i += 1) {
+		var long = 0;
 		// console.log("I am phrases.length:" + phrases.length);
 		var current_phrase = phrases[i];
 		// console.log("I am current_phrase.length:" + current_phrase.length);
@@ -71,7 +71,7 @@ function Generate_Random_TD(integer) {
 	var loop = 1;
 	var random_number = 0;
 
-	this.random = function() {
+	// this.random = function() {
 		while (loop <= integer) {
 			do {
 				random_number = Math.floor(Math.random() * 10);
@@ -87,7 +87,7 @@ function Generate_Random_TD(integer) {
 		}
 	// console.log(this.random_ARY);
 	return this.random_ARY;
-	}
+	// }
 }
 
 // Driver Code
@@ -96,13 +96,11 @@ console.log(Phrase_Finder(phrase));
 console.log(Phrase_Finder(kierkegaard));
 console.log(Phrase_Finder(TS_Eliot));
 
-var TestData = new Generate_Random_TD(5);
-console.log(TestData.random());
+console.log(Match(sk, jm))
+console.log(Match(sk, mayer))
 
 var counter = 1
 do {
-var input_phrase = TestData.random();
-console.log(Phrase_Finder(input_phrase));
-// console.log(input_phrase);
+console.log(Phrase_Finder(Generate_Random_TD(5)));
 counter += 1;
 } while (counter <= 10);
