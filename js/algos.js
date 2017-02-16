@@ -71,14 +71,11 @@ function Generate_Random_TD(integer) {
 	var loop = 1;
 	var random_number = 0;
 
-	do {
-		random_number = Math.floor(Math.random() * 10);
-	}
-	while (random_number == 0);
-
-	console.log("I am random number:" + random_number);
-
 		while (loop <= integer) {
+			do {
+				random_number = Math.floor(Math.random() * 10);
+			} while (random_number == 0);
+		console.log("I am random number:" + random_number);
 			for (j = 0; j <= random_number - 1; j += 1) { // loops how many characters go into a single random string
 				var random_poss_number = Math.floor(Math.random() * possible.length);
 				random_string += possible.charAt(random_poss_number);
