@@ -1,0 +1,27 @@
+INPUT:
+
+    SELECT businesses.name, users.first_name, users.last_name, reviews.stars, reviews.comment
+    FROM reviews                                                          
+    JOIN businesses ON (businesses.id = reviews.business_id)              
+    JOIN users ON users.id = reviews.user_id;
+
+OUTPUT:
+    
+    Grundy Hollow Wedding Chapel|Bradford|Pitt|4|okay food
+    Amir's Towing|Mandy|Kaling|2|not legit...
+    The Beagle Nightclub|Angela|Jolie|3|too salty
+    Lotus Yoga|Mandy|Kaling|4|this sizchuan was bomb
+    Amir's Towing|Bradford|Pitt|2|meh
+
+INPUT:
+
+    SELECT businesses.name, users.first_name, users.last_name, reviews.stars, reviews.comment
+    FROM reviews
+    JOIN businesses ON (businesses.id = reviews.business_id)
+    JOIN users ON users.id = reviews.user_id                              
+    WHERE businesses.id = 2;
+
+OUTPUT:
+  
+    Amir's Towing|Mandy|Kaling|2|not legit...
+    Amir's Towing|Bradford|Pitt|2|meh
