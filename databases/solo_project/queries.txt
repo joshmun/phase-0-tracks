@@ -85,3 +85,51 @@ Walrus Bellwether|Delay
 EHX Cathedral|Reverb
 Polytune Mini|Tuner
 Ditto|Looper
+
+Release 3: Research
+
+INNER JOIN:
+SELECT pedals.name, pedals.own, genre.name FROM pedals INNER JOIN genre ON pedals.genre_id = genre.id;
+
+OUTPUT:
+OCD|true|Overdrive
+Ernie Ball VP JR|true|Volume
+Rat Co|true|Overdrive
+Wampler Euphoria|true|Overdrive
+Archer|true|Overdrive
+Deep Six Walrus|true|Overdrive
+RC Booster|true|Overdrive
+TC Nova Delay|true|Delay
+EHX Epitome|true|Modulation
+DD-7|false|Delay
+Boss DD-20|false|Delay
+Walrus Bellwether|false|Delay
+EHX Cathedral|false|Reverb
+Polytune Mini|true|Tuner
+Ditto|true|Looper
+
+LEFT JOIN:
+SELECT pedals.name, pedals.own, genre.name FROM pedals LEFT JOIN genre ON pedals.genre_id = genre.id;
+
+OUTPUT:
+OCD|true|Overdrive
+Ernie Ball VP JR|true|Volume
+Rat Co|true|Overdrive
+Wampler Euphoria|true|Overdrive
+Archer|true|Overdrive
+Deep Six Walrus|true|Overdrive
+RC Booster|true|Overdrive
+TC Nova Delay|true|Delay
+EHX Epitome|true|Modulation
+DD-7|false|Delay
+Boss DD-20|false|Delay
+Walrus Bellwether|false|Delay
+EHX Cathedral|false|Reverb
+Polytune Mini|true|Tuner
+Ditto|true|Looper
+
+RIGHT/FULL/OUTER JOIN:
+SELECT pedals.name, pedals.own, genre.name FROM pedals RIGHT JOIN genre ON pedals.genre_id = genre.id;
+
+OUTPUT:
+RIGHT and FULL OUTER JOINs are not currently supported
