@@ -1,0 +1,23 @@
+1. Display the information in one table (either table is fine).
+SELECT pedals.name, pedals.own, genre.name FROM pedals JOIN genre ON pedals.genre_id = genre.id;
+
+Output:
+TS9|true|Overdrive
+OCD|true|Overdrive
+Ernie Ball VP JR|true|Volume
+Rat Co|true|Overdrive
+Wampler Euphoria|true|Overdrive
+Archer|true|Overdrive
+Deep Six Walrus|true|Overdrive
+RC Booster|true|Overdrive
+TC Nova Delay|true|Delay
+EHX Epitome|true|Modulation
+DD-7|true|Delay
+Boss DD-20|false|Delay
+Walrus Bellwether|false|Delay
+EHX Cathedral|false|Reverb
+Polytune Mini|true|Tuner
+Ditto|true|Looper
+
+2. Update an item that meets some condition (you can choose a condition that makes sense).
+UPDATE rabbits SET age=4 WHERE name="Queen Bey";
