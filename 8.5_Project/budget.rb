@@ -98,6 +98,13 @@ def store_transaction!(bdb, transaction_data)
 		)
 end
 
+#--------------------VIEWING TRANSACTIONS---------------------#
+def view_all_transactions(bdb)
+	bdb.execute(<<-SQL
+		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id = usernames.id
+		SQL
+		)
+end
 #----------------------USER INTERFACE-------------------------#
 # puts "Hello! Are you a returning user or would you like to create a username?"
 # login = gets.chomp
@@ -127,12 +134,22 @@ end
 
 
 #----------------------Driver Code-------------------------#
-# # Driver Code
+# Driver Code
 
 # add_user(bdb, "josh_mun")
-# p users(bdb)
-# p user_id_num = user_id(bdb, "josh_mun")
+# users(bdb)
+# user_id_num = user_id(bdb, "josh_mun")
 # transaction_data = transaction("2/24/17", "Costco hot dogs", 5.69)
-# p month_translater(transaction_data)
-# p add_user_id(transaction_data, user_id_num)
-# # store_transaction!(bdb, transaction_data)
+# transaction_data2 = transaction("2/21/17", "Cash N Carry plates", 20)
+# transaction_data3 = transaction("2/19/17", "Dick's Burgers", 7.56)
+# month_translater(transaction_data)
+# month_translater(transaction_data2)
+# month_translater(transaction_data3)
+# add_user_id(transaction_data, user_id_num)
+# add_user_id(transaction_data2, user_id_num)
+# add_user_id(transaction_data3, user_id_num)
+# store_transaction!(bdb, transaction_data)
+# store_transaction!(bdb, transaction_data2)
+# store_transaction!(bdb, transaction_data3)
+
+puts view_all_transactions(bdb)

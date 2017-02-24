@@ -24,3 +24,22 @@ Methods:
 	- array of month names, each number corresponds to index+1 of month array
 * store the user_id from the method into the transaction array
 * SQL method to insert the transaction array accordingly into the database
+
+## View all transactions by user of all time
+Methods:
+* sql execution, need a CREATE VIEW, SELECT, JOIN
+* Data selected: budgets(month, caldate, details, cost), username(name)
+	- FROM budgets, JOIN ON budgets(user_id) = usernames(id)
+
+## View all transaction by Month Year
+Methods:
+* sql execution, need a CREATE VIEW, SELECT, JOIN
+
+## View all transaction by caldate
+Methods:
+* sql execution, need a CREATE VIEW, SELECT, JOIN
+
+## View average spending per month
+Methods:
+* sql execution, need a CREATE VIEW, SELECT, JOIN
+
