@@ -97,41 +97,7 @@ def store_transaction!(bdb, transaction_data)
 		)
 end
 
-## Driver Code
-
-add_user(bdb, "josh_mun")
-p users(bdb)
-p user_id_num = user_id(bdb, "josh_mun")
-transaction_data = transaction("2/24/17", "Costco hot dogs", 5.69)
-p month_translater(transaction_data)
-p add_user_id(transaction_data, user_id_num)
-# store_transaction!(bdb, transaction_data)
-
-# users = users(bdb)
-
-
-# create_budget_table = <<-SQL
-# 	id INTEGER PRIMARY KEY,
-# 	month INT,
-# 	caldate VARCHAR(255),
-# 	transaction INT, 
-# 	user_id INT,
-# 	FOREIGN KEY (user_id) REFERENCES username(id)
-# SQL
-
-
-# create_table_cmd = <<-SQL
-#   CREATE TABLE IF NOT EXISTS kittens(
-#     id INTEGER PRIMARY KEY,
-#     name VARCHAR(255),
-#     age INT
-#   )
-# SQL
-
-
-# Login User Interface
-## Asks user to login or create a username. If creating, executes create method, if logging in, executes returning method
-
+#----------------------USER INTERFACE-------------------------#
 # puts "Hello! Are you a returning user or would you like to create a username?"
 # login = gets.chomp
 # confirmation = nil
@@ -157,3 +123,15 @@ p add_user_id(transaction_data, user_id_num)
 # 		login = gets.chomp
 # 	end
 # end
+
+
+#----------------------Driver Code-------------------------#
+# # Driver Code
+
+# add_user(bdb, "josh_mun")
+# p users(bdb)
+# p user_id_num = user_id(bdb, "josh_mun")
+# transaction_data = transaction("2/24/17", "Costco hot dogs", 5.69)
+# p month_translater(transaction_data)
+# p add_user_id(transaction_data, user_id_num)
+# # store_transaction!(bdb, transaction_data)
