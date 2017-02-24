@@ -84,6 +84,7 @@ def month_translater(transaction_data)
 	caldate = transaction_data[0].split("/")
 	month = caldate[0].to_i
 	translated_month = months[month-1]
+	translated_month += " 20#{caldate[2]}"
 	transaction_data.insert(0, translated_month)
 end
 
