@@ -15,20 +15,21 @@ create_usernames_table = <<-SQL
   )
 SQL
 
-create_budget_table = <<-SQL
-	CREATE TABLE IF NOT EXISTS budget(
-	id INTEGER PRIMARY KEY,
-	month INT,
-	caldate VARCHAR(255),
-	transaction INT, 
-	user_id INT,
-	FOREIGN KEY (user_id) REFERENCES usernames(id)
-	)
-SQL
+# create_budget_table = <<-SQL
+# 	CREATE TABLE IF NOT EXISTS budget(
+# 	id INTEGER PRIMARY KEY,
+# 	month INT,
+# 	caldate VARCHAR(255),
+# 	transaction INT, 
+# 	user_id INT,
+# 	FOREIGN KEY (user_id) REFERENCES usernames(id)
+# 	)
+# SQL
 
 bdb.execute(create_usernames_table)
-bdb.execute(create_budget_table)
+# bdb.execute(create_budget_table)
 
+## Declared Variables ##
 
 # Methods #
 
@@ -41,13 +42,6 @@ def add_user(bdb, username)
 	)
 end
 
-def users(bdb)
-	bdb.execute(<<-SQL
-		SELECT * FROM usernames
-	SQL
-	)
-end
-
 def user_exists?(bdb, username)
 	users(bdb).each do |user|
 		return true if user["name"] == username
@@ -55,14 +49,25 @@ def user_exists?(bdb, username)
 	false
 end
 
-
-## Login Methods ##
-
-
-
-def returning(bdb, username)
+## Checks username in username database
+def users(bdb)
+	bdb.execute(<<-SQL
+		SELECT * FROM usernames
+	SQL
+	)
 end
 
+## Login Methods ##
+def user_id(bdb, username)
+	user_id_num = nil
+	users(bdb).each do |user|
+		if user["name"] == username
+			user_id_num = user["id"]
+		break
+		end
+	end
+	user_id_num
+end
 
 ## Select users from usernames
 
@@ -71,6 +76,7 @@ end
 
 add_user(bdb, "josh_mun")
 p users(bdb)
+p user_id(bdb, "josh_mun")
 
 
 
