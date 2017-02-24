@@ -105,7 +105,7 @@ p user_id_num = user_id(bdb, "josh_mun")
 transaction_data = transaction("2/24/17", "Costco hot dogs", 5.69)
 p month_translater(transaction_data)
 p add_user_id(transaction_data, user_id_num)
-store_transaction!(bdb, transaction_data)
+# store_transaction!(bdb, transaction_data)
 
 # users = users(bdb)
 
