@@ -15,7 +15,7 @@ What are we accomplishing?
 The ability to enter and store details of a single transaction.
 
 Transaction:
-id, month (string), date (string), details (String), cost (real/float), user_id (int from login method user_id) 
+month (string), date (string), details (String), cost (real/float), user_id (int from login method user_id) 
 
 Methods:
 * receives date, details, cost, spits out an array
