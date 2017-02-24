@@ -85,6 +85,10 @@ def month_translater(transaction_data)
 	translated_month = months[month-1]
 	transaction_data.insert(0, translated_month)
 end
+
+def add_user_id(transaction_data, user_id_num)
+	transaction_data.insert(-1, user_id_num)
+end
 ## Driver Code
 
 add_user(bdb, "josh_mun")
@@ -92,6 +96,7 @@ p users(bdb)
 p user_id_num = user_id(bdb, "josh_mun")
 transaction_data = transaction("2/24/17", "Costco hot dogs", 5.69)
 p month_translater(transaction_data)
+p add_user_id(transaction_data, user_id_num)
 
 # users = users(bdb)
 
