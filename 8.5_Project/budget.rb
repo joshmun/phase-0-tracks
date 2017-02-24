@@ -69,6 +69,7 @@ def user_id(bdb, username)
 end
 
 #-------------ENTERING NEW TRANSACTION METHODS--------------#
+## Building the Transaction Array ##
 def transaction(caldate, details, cost)
 	transaction_data = []
 	[caldate, details, cost].each { |element| transaction_data << element }
@@ -89,6 +90,13 @@ end
 def add_user_id(transaction_data, user_id_num)
 	transaction_data.insert(-1, user_id_num)
 end
+
+## Storing the Transaction Array ##
+def store_transaction!(bdb, transaction_data)
+	bdb.execute("INSERT INTO budgets (month, caldate, details, cost, user_id) VALUES (?, ?, ?, ?, ?)", [transaction_data.each { |data| data}]
+		)
+end
+
 ## Driver Code
 
 add_user(bdb, "josh_mun")
@@ -97,6 +105,7 @@ p user_id_num = user_id(bdb, "josh_mun")
 transaction_data = transaction("2/24/17", "Costco hot dogs", 5.69)
 p month_translater(transaction_data)
 p add_user_id(transaction_data, user_id_num)
+store_transaction!(bdb, transaction_data)
 
 # users = users(bdb)
 
