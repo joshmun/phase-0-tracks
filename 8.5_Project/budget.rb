@@ -102,21 +102,21 @@ end
 #--------------------VIEWING TRANSACTIONS---------------------#
 def view_all_transactions(bdb, user_id_num)
 	bdb.execute(<<-SQL
-		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id="#{user_id_num}"
+		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON usernames.id="#{user_id_num}"
 		SQL
 		)
 end
 
 def view_transactions_month(bdb, user_id_num, month)
 	bdb.execute(<<-SQL
-		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id = "#{user_id_num}" WHERE budgets.month = "#{month}" 
+		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON usernames.id = "#{user_id_num}" WHERE budgets.month = "#{month}" 
 		SQL
 		)
 end
 
 def view_transactions_caldate(bdb, user_id_num, caldate)
 	bdb.execute(<<-SQL
-		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id = "#{user_id_num}" WHERE budgets.caldate = "#{caldate}" 
+		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON usernames.id = "#{user_id_num}" WHERE budgets.caldate = "#{caldate}" 
 		SQL
 		)
 end
@@ -151,11 +151,9 @@ while (login != "create" || login != "returning")
 		confirmation = gets.chomp
 			if confirmation == "yes"
 				add_user(bdb, username) if user_exists?(bdb, username) == false
+				user_id_num = user_id(bdb, username)
 			end
-		end
-	puts "Please now login:"
-	username = gets.chomp
-	user_id_num = user_id(bdb, username)
+		end	
 	break	
 	elsif login == "returning"
 		puts "Welcome! Please enter your username."
@@ -215,7 +213,7 @@ while log_off != "log off"
 			tp caldate_view, "month", "caldate", "details", "cost", "name"
 		
 		when 5
-			puts "You selected: average spending."
+			puts "You selected: Average Spending."
 			puts "Please enter the month you'd like to view. Example: February 2017."
 			avg_month = gets.chomp
 			p average_month(bdb, avg_month)
