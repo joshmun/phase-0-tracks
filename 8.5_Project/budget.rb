@@ -99,9 +99,9 @@ def store_transaction!(bdb, transaction_data)
 end
 
 #--------------------VIEWING TRANSACTIONS---------------------#
-def view_all_transactions(bdb)
+def view_all_transactions(bdb, user_id_num)
 	bdb.execute(<<-SQL
-		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id = usernames.id
+		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id = "#{user_id_num}"
 		SQL
 		)
 end
@@ -137,8 +137,8 @@ end
 # Driver Code
 
 # add_user(bdb, "josh_mun")
-# users(bdb)
-# user_id_num = user_id(bdb, "josh_mun")
+users(bdb)
+user_id_num = user_id(bdb, "josh_mun")
 # transaction_data = transaction("2/24/17", "Costco hot dogs", 5.69)
 # transaction_data2 = transaction("2/21/17", "Cash N Carry plates", 20)
 # transaction_data3 = transaction("2/19/17", "Dick's Burgers", 7.56)
@@ -152,4 +152,4 @@ end
 # store_transaction!(bdb, transaction_data2)
 # store_transaction!(bdb, transaction_data3)
 
-puts view_all_transactions(bdb)
+puts view_all_transactions(bdb, user_id_num)
