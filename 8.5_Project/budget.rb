@@ -5,7 +5,7 @@ require 'sqlite3'
 require 'table_print'
 
 ## Initializing database ##
-bdb = SQLite3::Database.new("budget.db")
+bdb = SQLite3::Database.new("budgets.db")
 bdb.results_as_hash = true
 
 ## SQL Commands ##
@@ -102,7 +102,7 @@ end
 #--------------------VIEWING TRANSACTIONS---------------------#
 def view_all_transactions(bdb, user_id_num)
 	bdb.execute(<<-SQL
-		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id = "#{user_id_num}"
+		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id="#{user_id_num}"
 		SQL
 		)
 end
@@ -135,6 +135,7 @@ def average_month(bdb, month)
 	average = average_raw.round(2)
 	"You had #{num_of_transactions} transactions this #{month} with an average of $#{average} spent per day."
 end
+
 #----------------------USER INTERFACE-------------------------#
 puts "Hello! Are you a RETURNING user or would you like to CREATE a username?"
 login = gets.chomp
@@ -152,6 +153,9 @@ while (login != "create" || login != "returning")
 				add_user(bdb, username) if user_exists?(bdb, username) == false
 			end
 		end
+	puts "Please now login:"
+	username = gets.chomp
+	user_id_num = user_id(bdb, username)
 	break	
 	elsif login == "returning"
 		puts "Welcome! Please enter your username."
@@ -176,14 +180,14 @@ while log_off != "log off"
 	
 	option = gets.chomp.to_i
 	case option
-		when option = 1
+		when 1
 			puts "Enter a transaction."
 			puts "Please enter the caldate. Example: 2/29/17"
 			caldate = gets.chomp
 			puts "Please enter details. Example: Costco"
 			details = gets.chomp
 			puts "Please enter the cost. Example: 19.72. Do not enter $."
-			cost = gets.chomp.to_i
+			cost = gets.chomp.to_f
 	
 			transaction_data = transaction(caldate, details, cost)
 			month_translater(transaction_data)
@@ -191,24 +195,26 @@ while log_off != "log off"
 			store_transaction!(bdb, transaction_data)
 			puts "Entry successfully stored."
 	
-		when option = 2
+		when 2
 			puts "Here is a history of all of your transactions."
 			all_view = view_all_transactions(bdb, user_id_num)
+			# puts "I am user_id_num: #{user_id_num}"
 			tp all_view, "month", "caldate", "details", "cost", "name"
+			# puts all_view
 	
-		when option = 3
+		when 3
 			puts "Please enter the month you'd like to view. Example: February 2017."
 			month = gets.chomp
 			month_view = view_transactions_month(bdb, user_id_num, month)
 			tp month_view, "month", "caldate", "details", "cost", "name"
 	
-		when option = 4
+		when 4
 			puts "Please enter the caldate you'd like to view. Example: 2/17/17."
 			caldate = gets.chomp
 			caldate_view = view_transactions_caldate(bdb, user_id_num, caldate)
 			tp caldate_view, "month", "caldate", "details", "cost", "name"
 		
-		when option = 5
+		when 5
 			puts "You selected: average spending."
 			puts "Please enter the month you'd like to view. Example: February 2017."
 			avg_month = gets.chomp
@@ -216,6 +222,7 @@ while log_off != "log off"
 		else
 			puts "Would you like to log off, or view more options?"
 			log_off = gets.chomp
+			break
 	end
 	puts "Would you like to log off, or view more options?"
 	log_off = gets.chomp
