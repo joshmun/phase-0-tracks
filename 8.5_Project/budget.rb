@@ -2,6 +2,7 @@
 
 ## Requiring Gems ##
 require 'sqlite3'
+require 'table_print'
 
 ## Initializing database ##
 bdb = SQLite3::Database.new("budget.db")
@@ -105,6 +106,35 @@ def view_all_transactions(bdb, user_id_num)
 		SQL
 		)
 end
+
+def view_transactions_month(bdb, user_id_num, month)
+	bdb.execute(<<-SQL
+		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id = "#{user_id_num}" WHERE budgets.month = "#{month}" 
+		SQL
+		)
+end
+
+def view_transactions_caldate(bdb, user_id_num, caldate)
+	bdb.execute(<<-SQL
+		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id = "#{user_id_num}" WHERE budgets.caldate = "#{caldate}" 
+		SQL
+		)
+end
+
+def average_month(bdb, month)
+	tot_expenditures = 0
+	tot_month_transactions = bdb.execute(<<-SQL
+		SELECT * FROM budgets WHERE budgets.month = "#{month}"
+		SQL
+		)
+	num_of_transactions = tot_month_transactions.length
+		tot_month_transactions.each do |entry|
+			tot_expenditures += entry["cost"]
+		end
+	average_raw = tot_expenditures/num_of_transactions
+	average = average_raw.round(2)
+	"You had #{num_of_transactions} transactions this #{month} with an average of $#{average} spent per day."
+end
 #----------------------USER INTERFACE-------------------------#
 # puts "Hello! Are you a returning user or would you like to create a username?"
 # login = gets.chomp
@@ -152,4 +182,13 @@ user_id_num = user_id(bdb, "josh_mun")
 # store_transaction!(bdb, transaction_data2)
 # store_transaction!(bdb, transaction_data3)
 
-puts view_all_transactions(bdb, user_id_num)
+all_view = view_all_transactions(bdb, user_id_num)
+tp all_view, "month", "caldate", "details", "cost", "name"
+
+month_view = view_transactions_month(bdb, user_id_num, "February 2017")
+tp month_view, "month", "caldate", "details", "cost", "name"
+
+caldate_view = view_transactions_caldate(bdb, user_id_num, "2/21/17")
+tp caldate_view, "month", "caldate", "details", "cost", "name"
+
+p average_month(bdb, "February 2017")
