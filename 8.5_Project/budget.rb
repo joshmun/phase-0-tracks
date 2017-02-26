@@ -3,6 +3,7 @@
 ## Requiring Gems ##
 require 'sqlite3'
 require 'table_print'
+require 'date'
 
 ## Initializing database ##
 bdb = SQLite3::Database.new("budgets.db")
@@ -19,6 +20,7 @@ SQL
 create_budget_table = <<-SQL
 	CREATE TABLE IF NOT EXISTS budgets(
 	id INTEGER PRIMARY KEY,
+	full_date VARCHAR(255),
 	month VARCHAR(255),
 	caldate VARCHAR(255),
 	details VARCHAR(255),
@@ -74,9 +76,6 @@ end
 def transaction(caldate, details, cost)
 	transaction_data = []
 	[caldate, details, cost].each { |element| transaction_data << element }
-	# transaction << caldate
-	# transaction << details
-	# transaction << cost
 	transaction_data
 end
 
@@ -93,30 +92,39 @@ def add_user_id(transaction_data, user_id_num)
 	transaction_data.insert(-1, user_id_num)
 end
 
+def insert_date(transaction_data)
+caldate = transaction_data[1].split("/")
+year = "20#{caldate[2]}".to_i
+month = caldate[0].to_i
+day = caldate[1].to_i
+date = Date.new(year, month, day)
+transaction_data.insert(0, date.to_s)
+end
+
 ## Storing the Transaction Array ##
 def store_transaction!(bdb, transaction_data)
-	bdb.execute("INSERT INTO budgets (month, caldate, details, cost, user_id) VALUES (?, ?, ?, ?, ?)", [transaction_data.each { |data| data}]
+	bdb.execute("INSERT INTO budgets (full_date, month, caldate, details, cost, user_id) VALUES (?, ?, ?, ?, ?, ?)", [transaction_data.each { |data| data}]
 		)
 end
 
 #--------------------VIEWING TRANSACTIONS---------------------#
 def view_all_transactions(bdb, user_id_num)
 	bdb.execute(<<-SQL
-		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON usernames.id="#{user_id_num}"
+		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id="#{user_id_num}" WHERE usernames.id="#{user_id_num}" ORDER BY budgets.full_date DESC
 		SQL
 		)
 end
 
 def view_transactions_month(bdb, user_id_num, month)
 	bdb.execute(<<-SQL
-		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON usernames.id = "#{user_id_num}" WHERE budgets.month = "#{month}" 
+		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id="#{user_id_num}" WHERE usernames.id="#{user_id_num}" AND budgets.month = "#{month}" ORDER BY budgets.caldate ASC
 		SQL
 		)
 end
 
 def view_transactions_caldate(bdb, user_id_num, caldate)
 	bdb.execute(<<-SQL
-		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON usernames.id = "#{user_id_num}" WHERE budgets.caldate = "#{caldate}" 
+		SELECT budgets.month, budgets.caldate, budgets.details, budgets.cost, usernames.name FROM budgets JOIN usernames ON budgets.user_id="#{user_id_num}" WHERE usernames.id="#{user_id_num}" AND budgets.caldate = "#{caldate}" ORDER BY budgets.caldate ASC
 		SQL
 		)
 end
@@ -190,6 +198,7 @@ while log_off != "log off"
 			transaction_data = transaction(caldate, details, cost)
 			month_translater(transaction_data)
 			add_user_id(transaction_data, user_id_num)
+			insert_date(transaction_data)
 			store_transaction!(bdb, transaction_data)
 			puts "Entry successfully stored."
 	
@@ -217,10 +226,6 @@ while log_off != "log off"
 			puts "Please enter the month you'd like to view. Example: February 2017."
 			avg_month = gets.chomp
 			p average_month(bdb, avg_month)
-		else
-			puts "Would you like to log off, or view more options?"
-			log_off = gets.chomp
-			break
 	end
 	puts "Would you like to log off, or view more options?"
 	log_off = gets.chomp
