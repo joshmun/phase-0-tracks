@@ -27,10 +27,15 @@ end
 # add static resources
 
 get '/seattle' do
-  @students_campus = db.execute("SELECT * FROM students")
-  # .to_s??
+  @campus = db.execute("SELECT * FROM students WHERE campus = 'SEA'")
   erb :seattle
 end
 
-  # "Hello World"
-  # 
+get '/search' do
+  erb :search
+end
+
+post '/search' do
+  @query = db.execute("SELECT * FROM students WHERE campus = ?", [params['campus']])
+  erb :results
+end
