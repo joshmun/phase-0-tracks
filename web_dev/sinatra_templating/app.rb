@@ -25,3 +25,12 @@ post '/students' do
 end
 
 # add static resources
+
+get '/seattle' do
+  @students_campus = db.execute("SELECT * FROM students")
+  # .to_s??
+  erb :seattle
+end
+
+  # "Hello World"
+  # 
